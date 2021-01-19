@@ -13,6 +13,7 @@ class MoviesCubit extends Cubit<MoviesState> {
   void _getTrendingMovies() async {
     try {
       emit(LoadingState());
+      print('LoadingState() now');
       final movies = await moviesRepository.getMovies();
       emit(SuccessLoadingState(movies));
     } catch (e) {}
