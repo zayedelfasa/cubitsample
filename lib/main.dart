@@ -1,9 +1,12 @@
+import 'package:cubitloginsample/routes/routes.dart';
 import 'package:cubitloginsample/views/counter/counter_view.dart';
 import 'package:cubitloginsample/views/login/login_view.dart';
+import 'package:cubitloginsample/views/main/app_main.dart';
 import 'package:cubitloginsample/views/movies/movies_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  Routes.createRoutes();
   runApp(MyApp());
   // runApp(LoginView());
 }
@@ -19,7 +22,10 @@ class MyApp extends StatelessWidget {
       ),
       // home: LoginView()
       // home: CounterView()
-      home: MoviesView()
+      // home: MoviesView()
+      home: Main(),
+      navigatorKey: Routes.routes.navigatorKey,
+      onGenerateRoute: Routes.routes.generator(),
     );
   }
 }
