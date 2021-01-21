@@ -13,6 +13,9 @@ class Main extends StatelessWidget {
             RaisedButton(
               child: Text("Menuju halaman login"),
               onPressed: () => Routes.routes.navigate<bool>("/LoginPage", params: {'id': 2345}),
+              // onPressed: () {
+              //   // Navigator.of(context, rootNavigator: false).push()
+              // },
             )
           ],
         ),
