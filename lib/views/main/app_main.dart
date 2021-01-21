@@ -1,4 +1,4 @@
-import 'package:cubitloginsample/routes/routes.dart';
+import 'package:cubitloginsample/views/login/login_view.dart';
 import 'package:flutter/material.dart';
 
 class Main extends StatelessWidget {
@@ -12,10 +12,7 @@ class Main extends StatelessWidget {
             Text("Ini untuk splash view"),
             RaisedButton(
               child: Text("Menuju halaman login"),
-              onPressed: () => Routes.routes.navigate<bool>("/LoginPage", params: {'id': 2345}),
-              // onPressed: () {
-              //   // Navigator.of(context, rootNavigator: false).push()
-              // },
+              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => LoginView())),
             )
           ],
         ),
