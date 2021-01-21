@@ -1,5 +1,6 @@
 import 'package:cubitloginsample/routes/routes.dart';
 import 'package:cubitloginsample/views/counter/counter_view.dart';
+import 'package:cubitloginsample/views/cupertino_tab/CupertinoTab.dart';
 import 'package:cubitloginsample/views/login/login_view.dart';
 import 'package:cubitloginsample/views/main/app_main.dart';
 import 'package:cubitloginsample/views/movies/movies_view.dart';
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -23,7 +25,8 @@ class MyApp extends StatelessWidget {
       // home: LoginView()
       // home: CounterView()
       // home: MoviesView()
-      home: Main(),
+      // home: Main(),
+      home: CupertinoTab(),
       navigatorKey: Routes.routes.navigatorKey,
       onGenerateRoute: Routes.routes.generator(),
     );
