@@ -5,6 +5,7 @@ import 'package:cubitloginsample/views/fluro/fluro_main.dart';
 import 'package:cubitloginsample/views/login/login_view.dart';
 import 'package:cubitloginsample/views/main/app_main.dart';
 import 'package:cubitloginsample/views/movies/movies_view.dart';
+import 'package:cubitloginsample/views/multi_bloc_provider/main/multi_bloc_main.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -27,7 +28,8 @@ class MyApp extends StatelessWidget {
       // home: MoviesView()
       // home: Main(),
       // home: CupertinoTab()
-      home: FluroMainView()
+      // home: FluroMainView()
+      home: MultiBlocMain()
     );
   }
 }
