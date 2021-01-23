@@ -7,25 +7,27 @@ import 'package:flutter/material.dart';
 class RoutesApp {
   static final routeNotFoundHandler =
       Handler(handlerFunc: (context, Map<String, List<String>> params) {
-    debugPrint("Route not found.");
-    return Container(
-      child: Center(
-        child: Text("Router Not Found"),
+    print("Route not found.");
+    return Scaffold(
+      body: Container(
+        child: Center(
+          child: Text("Router Not Found"),
+        ),
       ),
     );
   });
 
-  static final rootRoute = AppRoute(
-      "/", Handler(handlerFunc: (context, parameters) => FluroFirstView()));
+  static final rootRoute =
+      AppRoute("/", Handler(handlerFunc: (context, parameters) => FluroFirstView()));
 
-  static final fluroSecondRoute = AppRoute("/flurosecond",
-      Handler(handlerFunc: (context, Map<String, List<String>> params) {
+  static final fluroSecondRoute =
+      AppRoute("/flurosecond", Handler(handlerFunc: (context, Map<String, List<String>> params) {
     return FluroSecondView();
   }));
 
   static final fluroTabRoute = AppRoute("/flurotabview", Handler(handlerFunc: (context, params) {
     return FluroTabView();
-  })); 
+  }));
 
   /// Primitive function to get one param detail route (i.e. id).
   static String getDetailRoute(String parentRoute, String id) {

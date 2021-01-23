@@ -29,7 +29,7 @@ class _FluroFirstViewState extends State<FluroFirstView> {
                 child: Text("Go to Second Fluro View"),
               ),
               TextButton(
-                  onPressed: () {
+                  onPressed: () {                    
                     AppRouter.router.navigateTo(
                         context, 
                         RoutesApp.fluroTabRoute.route,

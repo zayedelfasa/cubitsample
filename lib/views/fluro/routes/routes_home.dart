@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class RoutesHome {
   static final routeNotFoundHandler =
       Handler(handlerFunc: (context, Map<String, List<String>> params) {
-    debugPrint("Route not found.");
+    print("Route not found.");
     return Container(
       child: Center(
         child: Text("Router Not Found"),
