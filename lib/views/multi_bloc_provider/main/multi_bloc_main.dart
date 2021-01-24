@@ -46,7 +46,7 @@ class MultiBlocMain extends StatelessWidget {
 
               return Scaffold(
                 body: Center(
-                  child: CupertinoActivityIndicator(),
+                  child: Container()
                 ),
               );
             },
