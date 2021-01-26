@@ -8,6 +8,6 @@ class MultiLoginCubit extends Cubit<MultiLoginState> {
     emit(FetchMultiLoginState());
     await Future.delayed(Duration(seconds: 3));
 
-    emit(SuccessLoginState(true));
+    emit(SuccessLoginState(true, "Zayed Elfasa"));
   }
 }

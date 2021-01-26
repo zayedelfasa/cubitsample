@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-abstract class MultiLoginState extends Equatable {
+abstract class MultiLoginState extends Equatable {  
   @override
   List<Object> get props => [];
 }
@@ -11,8 +11,9 @@ class FetchMultiLoginState extends MultiLoginState {}
 
 class SuccessLoginState extends MultiLoginState {
   final bool isLogin;
+  final String loginName;
 
-  SuccessLoginState(this.isLogin);
+  SuccessLoginState(this.isLogin, this.loginName);
 
   @override
   List<Object> get props => [isLogin];
