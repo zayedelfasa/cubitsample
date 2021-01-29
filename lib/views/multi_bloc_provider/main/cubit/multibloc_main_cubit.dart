@@ -18,7 +18,7 @@ class MultiBlocMainCubit extends Cubit<MultiBlocMainState> {
 
   void getStatusLogin() async {
     await Future.delayed(Duration(seconds: 3));
-    emit(IsLoginState(false));
+    emit(IsLoginState(false, "zayed", "elfasa"));
   }
 
   void getDataPayload() {
@@ -34,8 +34,31 @@ class MultiBlocMainCubit extends Cubit<MultiBlocMainState> {
   }
 }
 
-class HydraMainCubit extends HydratedCubit<MultiBlocMainState> {
-  HydraMainCubit(MultiBlocMainState state) : super(LoadingIsLoginState());
+class HydratedMainCubit extends HydratedCubit<MultiBlocMainState> {
+  HydratedMainCubit() : super(LoadingIsLoginState()) {
+    AppRouter appRouter = AppRouter(
+        routes: RouteMainMultiBloc.routes,
+        notFoundHandler: RouteMainMultiBloc.routeNotFoundHandler);
+
+    appRouter.setupRoutes();
+  }
+
+  void getStatusLogin() async {
+    await Future.delayed(Duration(seconds: 3));
+    emit(IsLoginState(false, "zayed", "elfasa"));
+  }
+
+  void getDataPayload() {
+    emit(PayloadLoginState("Zayed", "Elfasa"));
+  }
+
+  FluroRouter appRouter() {
+    return AppRouter.router;
+  }
+
+  appRouterGenerator() {
+    return AppRouter.router.generator;
+  }
 
   @override
   MultiBlocMainState fromJson(Map<String, dynamic> json) {
@@ -45,5 +68,19 @@ class HydraMainCubit extends HydratedCubit<MultiBlocMainState> {
   @override
   Map<String, dynamic> toJson(MultiBlocMainState state) {
     return {'login': state};
+  }
+}
+
+class HydraLogin extends HydratedCubit<String> {
+  HydraLogin() : super("");
+
+  @override
+  String fromJson(Map<String, dynamic> json) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Map<String, dynamic> toJson(String state) {
+    throw UnimplementedError();
   }
 }

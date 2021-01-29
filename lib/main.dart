@@ -7,8 +7,12 @@ import 'package:cubitloginsample/views/main/app_main.dart';
 import 'package:cubitloginsample/views/movies/movies_view.dart';
 import 'package:cubitloginsample/views/multi_bloc_provider/main/multi_bloc_main.dart';
 import 'package:flutter/material.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 
-void main() {
+void main() async {
+  // ! Percobaan untuk hydrated
+  WidgetsFlutterBinding.ensureInitialized();
+  HydratedBloc.storage = await HydratedStorage.build();
   runApp(MyApp());
   // runApp(LoginView());
 }

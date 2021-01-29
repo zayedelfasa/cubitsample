@@ -9,8 +9,10 @@ class LoadingIsLoginState extends MultiBlocMainState {}
 
 class IsLoginState extends MultiBlocMainState {
   final bool isLogin;
+  final String firstName;
+  final String lastName;
 
-  IsLoginState(this.isLogin);
+  IsLoginState(this.isLogin, this.firstName, this.lastName);
 
   @override
   List<Object> get props => [isLogin];
