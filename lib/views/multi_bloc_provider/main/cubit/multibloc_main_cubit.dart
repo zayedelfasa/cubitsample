@@ -11,7 +11,8 @@ class MultiBlocMainCubit extends Cubit<MultiBlocMainState> {
 
     AppRouter appRouter = AppRouter(
         routes: RouteMainMultiBloc.routes,
-        notFoundHandler: RouteMainMultiBloc.routeNotFoundHandler);
+        notFoundHandler: RouteMainMultiBloc.routeNotFoundHandler
+    );
 
     appRouter.setupRoutes();
   }
@@ -38,7 +39,8 @@ class HydratedMainCubit extends HydratedCubit<MultiBlocMainState> {
   HydratedMainCubit() : super(LoadingIsLoginState()) {
     AppRouter appRouter = AppRouter(
         routes: RouteMainMultiBloc.routes,
-        notFoundHandler: RouteMainMultiBloc.routeNotFoundHandler);
+        notFoundHandler: RouteMainMultiBloc.routeNotFoundHandler
+    );
 
     appRouter.setupRoutes();
   }
@@ -72,15 +74,20 @@ class HydratedMainCubit extends HydratedCubit<MultiBlocMainState> {
 }
 
 class HydraLogin extends HydratedCubit<String> {
+  
   HydraLogin() : super("");
+
+  getIdLogin(String text) {
+    emit("1234567890");
+  }
 
   @override
   String fromJson(Map<String, dynamic> json) {
-    throw UnimplementedError();
+    return json['idlogin'] as String;
   }
 
   @override
   Map<String, dynamic> toJson(String state) {
-    throw UnimplementedError();
+    return {'idlogin': state};
   }
 }

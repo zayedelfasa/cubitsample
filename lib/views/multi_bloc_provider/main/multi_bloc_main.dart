@@ -8,32 +8,46 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MultiBlocMain extends StatelessWidget {
   final multiblocMainCubit = MultiBlocMainCubit();
+  final hydratedLogin = HydraLogin();
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (BuildContext context) => multiblocMainCubit,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<MultiBlocMainCubit>(
+          create: (BuildContext context) => multiblocMainCubit,
+        ),
+        BlocProvider<HydraLogin>(
+          create: (BuildContext context) => hydratedLogin,
+        )
+      ],
       child: MaterialApp(
         title: 'Multi Bloc Demo',
         debugShowCheckedModeBanner: false,
-        home: BlocListener<MultiBlocMainCubit, MultiBlocMainState>(
-          listener: (BuildContext context, MultiBlocMainState state) {
-            if (state is IsLoginState) {
-              if (state.isLogin) {
-                multiblocMainCubit.appRouter().navigateTo(
-                    context, 
-                    RouteMainMultiBloc.mmultiblochomeRoute.route,
-                    replace: true, transition: TransitionType.fadeIn);
-              } else {
-                multiblocMainCubit.appRouter().navigateTo(
-                    context, 
-                    RouteMainMultiBloc.multiblocloginRoute.route,
-                    replace: true, transition: TransitionType.fadeIn);
-              }
-            }
-          },
+        // home: BlocListener<MultiBlocMainCubit, MultiBlocMainState>(
+        home: MultiBlocListener(
+          listeners: [
+            BlocListener<MultiBlocMainCubit, MultiBlocMainState>(
+              listener: (BuildContext context, MultiBlocMainState state) {
+                if (state is IsLoginState) {
+                  if (state.isLogin) {
+                    multiblocMainCubit.appRouter().navigateTo(
+                        context, RouteMainMultiBloc.mmultiblochomeRoute.route,
+                        replace: true, transition: TransitionType.fadeIn);
+                  } else {
+                    multiblocMainCubit.appRouter().navigateTo(
+                        context, RouteMainMultiBloc.multiblocloginRoute.route,
+                        replace: true, transition: TransitionType.fadeIn);
+                  }
+                }
+              },
+            ),
+            BlocListener<HydraLogin, String>(
+              listener: (BuildContext context, String val) {},
+            )
+          ],
           child: Container(
-              child: BlocBuilder<MultiBlocMainCubit, MultiBlocMainState>(
+            child: BlocBuilder<MultiBlocMainCubit, MultiBlocMainState>(
             builder: (BuildContext context, MultiBlocMainState state) {
               if (state is LoadingIsLoginState) {
                 return Scaffold(
@@ -44,9 +58,7 @@ class MultiBlocMain extends StatelessWidget {
               }
 
               return Scaffold(
-                body: Center(
-                  child: Container()
-                ),
+                body: Center(child: Container()),
               );
             },
           )),

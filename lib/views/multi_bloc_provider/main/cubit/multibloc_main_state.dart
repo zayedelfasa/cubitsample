@@ -15,7 +15,7 @@ class IsLoginState extends MultiBlocMainState {
   IsLoginState(this.isLogin, this.firstName, this.lastName);
 
   @override
-  List<Object> get props => [isLogin];
+  List<Object> get props => [isLogin, firstName, lastName];
 }
 
 class PayloadLoginState extends MultiBlocMainState {
