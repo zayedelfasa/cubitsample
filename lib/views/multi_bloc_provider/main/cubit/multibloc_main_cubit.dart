@@ -11,8 +11,7 @@ class MultiBlocMainCubit extends Cubit<MultiBlocMainState> {
 
     AppRouter appRouter = AppRouter(
         routes: RouteMainMultiBloc.routes,
-        notFoundHandler: RouteMainMultiBloc.routeNotFoundHandler
-    );
+        notFoundHandler: RouteMainMultiBloc.routeNotFoundHandler);
 
     appRouter.setupRoutes();
   }
@@ -39,8 +38,7 @@ class HydratedMainCubit extends HydratedCubit<MultiBlocMainState> {
   HydratedMainCubit() : super(LoadingIsLoginState()) {
     AppRouter appRouter = AppRouter(
         routes: RouteMainMultiBloc.routes,
-        notFoundHandler: RouteMainMultiBloc.routeNotFoundHandler
-    );
+        notFoundHandler: RouteMainMultiBloc.routeNotFoundHandler);
 
     appRouter.setupRoutes();
   }
@@ -73,21 +71,46 @@ class HydratedMainCubit extends HydratedCubit<MultiBlocMainState> {
   }
 }
 
-class HydraLogin extends HydratedCubit<String> {
-  
-  HydraLogin() : super("");
+class HydraLogin extends Cubit<HydraLoginState> with HydratedMixin {
+  HydraLogin() : super(HydraLoadingLoginState()) {
+    setNotLogin();
+    AppRouter appRouter = AppRouter(
+        routes: RouteMainMultiBloc.routes,
+        notFoundHandler: RouteMainMultiBloc.routeNotFoundHandler);
+    appRouter.setupRoutes();
 
-  getIdLogin(String text) {
-    emit("1234567890");
+    // emit("not_login");
+    print('HydraLogin is Initialize');
+  }
+
+  FluroRouter appRouter() {
+    return AppRouter.router;
+  }
+
+  appRouterGenerator() {
+    return AppRouter.router.generator;
+  }
+
+  setLogin() {
+    emit(HydraIsLoginState("is_login"));
+  }
+
+  setNotLogin() async {
+    await Future.delayed(Duration(seconds: 3));
+
+    print('HydraLogin is Initialize 2');
+    emit(HydraNotLoginState("not_login"));
   }
 
   @override
-  String fromJson(Map<String, dynamic> json) {
-    return json['idlogin'] as String;
+  HydraLoginState fromJson(Map<String, dynamic> json) {
+    return json['idlogin'] as HydraIsLoginState;
   }
 
   @override
-  Map<String, dynamic> toJson(String state) {
-    return {'idlogin': state};
+  Map<String, dynamic> toJson(HydraLoginState state) {
+    return {
+      'idlogin' : state
+    };
   }
 }
